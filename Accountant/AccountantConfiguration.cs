@@ -31,6 +31,9 @@ public enum ConfigFlags : uint
     NoHeaderStyling    = 0x020000,
     CustomDelivery     = 0x040000,
     Tribes             = 0x080000,
+    NoTimerInCombat    = 0x100000,
+    NoTimersInIntance  = 0x200000,
+    NoTimersInCutscene = 0x400000
 }
 
 public static class ConfigFlagExtensions
@@ -76,7 +79,10 @@ public class AccountantConfiguration : IPluginConfiguration
       | ConfigFlags.JumboCactpot
       | ConfigFlags.LeveAllowances
       | ConfigFlags.CustomDelivery
-      | ConfigFlags.Tribes;
+      | ConfigFlags.Tribes
+      | ConfigFlags.NoTimerInCombat
+      | ConfigFlags.NoTimersInIntance
+      | ConfigFlags.NoTimersInCutscene;
 
     public int Version { get; set; } = 4;
 
@@ -93,6 +99,24 @@ public class AccountantConfiguration : IPluginConfiguration
     {
         get => Flags.Check(ConfigFlags.WindowVisible);
         set => Flags.Set(ConfigFlags.WindowVisible, value);
+    }
+
+    public bool NoTimerWindowInCombat
+    {
+        get => Flags.Check(ConfigFlags.NoTimerInCombat);
+        set => Flags.Set(ConfigFlags.NoTimerInCombat, value);
+    }
+
+    public bool NoTimerWindowInInstance
+    {
+        get => Flags.Check(ConfigFlags.NoTimersInIntance);
+        set => Flags.Set(ConfigFlags.NoTimersInIntance, value);
+    }
+
+    public bool NoTimerWindowDuringCutscene
+    {
+        get => Flags.Check(ConfigFlags.NoTimersInCutscene);
+        set => Flags.Set(ConfigFlags.NoTimersInCutscene, value);
     }
 
     public bool EnableRetainers
