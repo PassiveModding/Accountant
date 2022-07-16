@@ -22,7 +22,10 @@ public partial class ConfigWindow
         raii.Push(ImGui.EndChild);
 
         ImGuiRaii.ConfigCheckmark("Enable Plugin",               Accountant.Config.Enabled,         EnableTimers);
-        ImGuiRaii.ConfigCheckmark("Show Timers",                 Accountant.Config.WindowVisible,   b => Accountant.Config.WindowVisible   = b);
+        ImGuiRaii.ConfigCheckmark("Show Timers", Accountant.Config.WindowVisible, b => Accountant.Config.WindowVisible = b);
+        ImGuiRaii.ConfigCheckmark("Hide Timers During Combat",   Accountant.Config.NoTimerWindowInCombat,       b => Accountant.Config.NoTimerWindowInCombat = b);
+        ImGuiRaii.ConfigCheckmark("Hide Timers In Instance",     Accountant.Config.NoTimerWindowInInstance,     b => Accountant.Config.NoTimerWindowInInstance = b);
+        ImGuiRaii.ConfigCheckmark("Hide Timers During Cutscene", Accountant.Config.NoTimerWindowDuringCutscene, b => Accountant.Config.NoTimerWindowDuringCutscene = b);
         ImGuiRaii.ConfigCheckmark("No Collapsed Header Styling", Accountant.Config.NoHeaderStyling, b => Accountant.Config.NoHeaderStyling = b);
         ImGuiRaii.ConfigCheckmark("No Timer Window Resize",      Accountant.Config.ProhibitResize,  b => Accountant.Config.ProhibitResize  = b);
         ImGuiRaii.ConfigCheckmark("No Timer Window Movement",    Accountant.Config.ProhibitMoving,  b => Accountant.Config.ProhibitMoving  = b);

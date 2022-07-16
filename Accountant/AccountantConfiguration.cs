@@ -29,6 +29,9 @@ public enum ConfigFlags : uint
     MiniCactpot        = 0x008000,
     JumboCactpot       = 0x010000,
     NoHeaderStyling    = 0x020000,
+    NoTimerInCombat    = 0x040000,
+    NoTimersInIntance  = 0x080000,
+    NoTimersInCutscene = 0x100000,
 }
 
 public static class ConfigFlagExtensions
@@ -72,7 +75,10 @@ public class AccountantConfiguration : IPluginConfiguration
       | ConfigFlags.MapAllowance
       | ConfigFlags.MiniCactpot
       | ConfigFlags.JumboCactpot
-      | ConfigFlags.LeveAllowances;
+      | ConfigFlags.LeveAllowances
+      | ConfigFlags.NoTimerInCombat
+      | ConfigFlags.NoTimersInIntance
+      | ConfigFlags.NoTimersInCutscene;
 
     public int Version { get; set; } = 4;
 
@@ -89,6 +95,24 @@ public class AccountantConfiguration : IPluginConfiguration
     {
         get => Flags.Check(ConfigFlags.WindowVisible);
         set => Flags.Set(ConfigFlags.WindowVisible, value);
+    }
+
+    public bool NoTimerWindowInCombat
+    {
+        get => Flags.Check(ConfigFlags.NoTimerInCombat);
+        set => Flags.Set(ConfigFlags.NoTimerInCombat, value);
+    }
+
+    public bool NoTimerWindowInInstance
+    {
+        get => Flags.Check(ConfigFlags.NoTimersInIntance);
+        set => Flags.Set(ConfigFlags.NoTimersInIntance, value);
+    }
+
+    public bool NoTimerWindowDuringCutscene
+    {
+        get => Flags.Check(ConfigFlags.NoTimersInCutscene);
+        set => Flags.Set(ConfigFlags.NoTimersInCutscene, value);
     }
 
     public bool EnableRetainers
